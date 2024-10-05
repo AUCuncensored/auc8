@@ -1,14 +1,15 @@
+// src/App.js
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
-import Confirmation from './confirmation';
-import './App.css';
+import Confirmation from './confirmation'; // Ensure you create this component
+import './App.css'; // Your styles
 import axios from 'axios';
 
 const App = () => {
   const [message, setMessage] = useState('');
-  const [year, setYear] = useState('1st'); // Added state for year
-  const [major, setMajor] = useState('Humanities'); // Added state for major
-  const navigate = useNavigate(); // Use useNavigate for navigation
+  const [year, setYear] = useState('1st');
+  const [major, setMajor] = useState('Humanities');
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
