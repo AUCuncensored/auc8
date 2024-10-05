@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.faa4053d.css",
-    "main.js": "/static/js/main.ca781000.js",
-    "index.html": "/index.html",
-    "main.faa4053d.css.map": "/static/css/main.faa4053d.css.map",
-    "main.ca781000.js.map": "/static/js/main.ca781000.js.map"
+    "main.css": "/auc8/static/css/main.faa4053d.css",
+    "main.js": "/auc8/static/js/main.ca781000.js",
+    "index.html": "/auc8/index.html",
+    "main.faa4053d.css.map": "/auc8/static/css/main.faa4053d.css.map",
+    "main.ca781000.js.map": "/auc8/static/js/main.ca781000.js.map"
   },
   "entrypoints": [
     "static/css/main.faa4053d.css",
