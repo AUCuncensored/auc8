@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import Confirmation from './confirmation';
@@ -13,15 +12,15 @@ const App = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Send the message, year, and major to the Flask backend
     try {
-      await axios.post('http://127.0.0.1:5000/api/messages', { 
+      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/messages`, { 
         message, 
         year, 
         major 
       });
-      
+
       // After successful submission, navigate to the confirmation page
       navigate('/confirmation');
     } catch (error) {
@@ -30,10 +29,10 @@ const App = () => {
   };
 
   return (
-    <div className="App">  
+    <div className="App">
       <div className="container">
         <h1>Submit Your Confession</h1>
-        
+
         {/* Dropdown for selecting year */}
         <div className="dropdown-container">
           <label htmlFor="year">Select Your Year:</label>
@@ -85,7 +84,7 @@ const App = () => {
 // Wrap App with Router and define routes
 const AppWrapper = () => {
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/confirmation" element={<Confirmation />} />
