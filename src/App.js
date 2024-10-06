@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
-import Confirmation from './confirmation'; // Ensure you create this component
+import Confirmation from './Confirmation'; // Ensure you create this component
 import './App.css'; // Your styles
 import axios from 'axios';
 
@@ -15,14 +15,18 @@ const App = () => {
 
     // Send the message, year, and major to the Flask backend
     try {
-      await axios.post(`http://aucfreeconfessions.pythonanywhere.com/api/messages`, { 
+      const response = await axios.post(`https://aucfreeconfessions.pythonanywhere.com/api/messages`, { 
         message, 
         year, 
         major 
       });
 
-      // After successful submission, navigate to the confirmation page
-      navigate('/confirmation');
+      if (response.data.status === 'success') {
+        // After successful submission, navigate to the confirmation page
+        navigate('/confirmation');
+      } else {
+        alert('There was an error submitting your confession. Please try again.');
+      }
     } catch (error) {
       console.error('Error sending message:', error);
       alert('There was an error submitting your confession. Please try again.'); // Optionally show an alert
