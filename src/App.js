@@ -15,7 +15,7 @@ const App = () => {
 
     // Send the message, year, and major to the Flask backend
     try {
-      await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/messages`, { 
+      await axios.post(`http://aucfreeconfessions.pythonanywhere.com/api/messages`, { 
         message, 
         year, 
         major 
