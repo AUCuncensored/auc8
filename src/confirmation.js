@@ -7,18 +7,18 @@ const Confirmation = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if the page was loaded from the browser cache (refresh)
-    const isReload = sessionStorage.getItem('navigatedFromForm');
+    // Check if the user is coming from the form submission
+    const hasNavigatedFromForm = sessionStorage.getItem('navigatedFromForm');
 
-    if (!isReload) {
-      // If the user came directly to this page (not refreshing), set the sessionStorage item
-      sessionStorage.setItem('navigatedFromForm', 'true');
-    } else {
-      // If the user refreshed the page, navigate back to the main page
+    if (!hasNavigatedFromForm) {
+      // If the user didn't navigate from the form, redirect to the main page
       navigate('/');
+    } else {
+      // If the user did navigate from the form, set the sessionStorage item
+      sessionStorage.setItem('navigatedFromForm', 'true');
     }
 
-    // Cleanup function to remove the sessionStorage item after leaving the confirmation page
+    // Cleanup function to remove the sessionStorage item when leaving the confirmation page
     return () => {
       sessionStorage.removeItem('navigatedFromForm');
     };
