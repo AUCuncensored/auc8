@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
-import Confirmation from './Confirmation'; // Ensure you create this component
+import Confirmation from './confirmation'; // Ensure you create this component
 import './App.css'; // Your styles
 import axios from 'axios';
 
