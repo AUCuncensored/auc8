@@ -7,20 +7,16 @@ const Confirmation = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if the user is coming from the form submission
     const hasNavigatedFromForm = sessionStorage.getItem('navigatedFromForm');
 
     if (!hasNavigatedFromForm) {
-      // If the user didn't navigate from the form, redirect to the main page
-      navigate('/');
+      navigate('/'); // Redirect to home if not navigated from form
     } else {
-      // If the user did navigate from the form, set the sessionStorage item
-      sessionStorage.setItem('navigatedFromForm', 'true');
+      sessionStorage.setItem('navigatedFromForm', 'true'); // Set flag
     }
 
-    // Cleanup function to remove the sessionStorage item when leaving the confirmation page
     return () => {
-      sessionStorage.removeItem('navigatedFromForm');
+      sessionStorage.removeItem('navigatedFromForm'); // Cleanup on unmount
     };
   }, [navigate]);
 
