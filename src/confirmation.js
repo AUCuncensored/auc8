@@ -1,34 +1,33 @@
-// src/confirmation.js
+// src/Confirmation.js
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './confirmation.css';
 
 const Confirmation = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Navigate back to the main page if the page is reloaded
-    const handleBeforeUnload = (event) => {
-      event.preventDefault();
-      return (event.returnValue = "Are you sure you want to leave?");
-    };
+    // Check if the page was loaded from the browser cache (refresh)
+    const isReload = sessionStorage.getItem('navigatedFromForm');
 
-    window.addEventListener("beforeunload", handleBeforeUnload);
+    if (!isReload) {
+      // If the user came directly to this page (not refreshing), set the sessionStorage item
+      sessionStorage.setItem('navigatedFromForm', 'true');
+    } else {
+      // If the user refreshed the page, navigate back to the main page
+      navigate('/');
+    }
 
-    // Clean up the event listener on component unmount
+    // Cleanup function to remove the sessionStorage item after leaving the confirmation page
     return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
+      sessionStorage.removeItem('navigatedFromForm');
     };
   }, [navigate]);
 
-  const handleRedirect = () => {
-    navigate('/');
-  };
-
   return (
-    <div className="confirmation">
-      <h1>Your confession has been submitted!</h1>
-      <p>Thank you for sharing with us.</p>
-      <button onClick={handleRedirect}>Go Back to Submission Form</button>
+    <div className="confirmation-container">
+      <h1>Thank You!</h1>
+      <p>Your message has been successfully uploaded.</p>
     </div>
   );
 };
