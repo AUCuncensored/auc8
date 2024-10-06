@@ -1,24 +1,20 @@
 // src/Confirmation.js
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './confirmation.css';
 
 const Confirmation = () => {
-  const navigate = useNavigate();
-
   useEffect(() => {
-    const hasNavigatedFromForm = sessionStorage.getItem('navigatedFromForm');
+    // Create a meta refresh tag
+    const meta = document.createElement('meta');
+    meta.httpEquiv = 'refresh';
+    meta.content = '0; URL=/'; // Redirect to the home page immediately
+    document.head.appendChild(meta);
 
-    if (!hasNavigatedFromForm) {
-      navigate('/'); // Redirect to home if not navigated from form
-    } else {
-      sessionStorage.setItem('navigatedFromForm', 'true'); // Set flag
-    }
-
+    // Clean up on unmount
     return () => {
-      sessionStorage.removeItem('navigatedFromForm'); // Cleanup on unmount
+      document.head.removeChild(meta);
     };
-  }, [navigate]);
+  }, []);
 
   return (
     <div className="confirmation-container">
