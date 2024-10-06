@@ -1,7 +1,6 @@
-// src/App.js
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
-import Confirmation from './Confirmation'; // Ensure the case matches your file name
+import Confirmation from './confirmation'; // Ensure you create this component
 import './App.css'; // Your styles
 import axios from 'axios';
 
@@ -23,8 +22,8 @@ const App = () => {
       });
 
       if (response.data.status === 'success') {
-        sessionStorage.setItem('navigatedFromForm', 'true'); // Set this before navigating
-        navigate('/confirmation'); // Navigate to the confirmation page
+        // After successful submission, navigate to the confirmation page
+        navigate('/confirmation');
       } else {
         alert('There was an error submitting your confession. Please try again.');
       }
