@@ -10,6 +10,8 @@ const App = () => {
   const [major, setMajor] = useState('Humanities');
   const navigate = useNavigate();
 
+  const MAX_CHARACTERS = 280; // Maximum character limit
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -75,11 +77,20 @@ const App = () => {
           {/* Textarea for message */}
           <textarea
             value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            onChange={(e) => {
+              const inputValue = e.target.value;
+              // Update message only if within character limit
+              if (inputValue.length <= MAX_CHARACTERS) {
+                setMessage(inputValue);
+              }
+            }}
             placeholder="Type your message here..."
             rows="5"
             required
           ></textarea>
+
+          {/* Character counter */}
+          <p id="charCounter">{message.length} / {MAX_CHARACTERS}</p>
 
           <button type="submit" className="primary">Submit</button>
         </form>
